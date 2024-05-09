@@ -12,8 +12,10 @@ const Page = () => {
   const router = useRouter()
 
   useEffect(() => {
-    const configurationId = localStorage.getItem('configurationId')
-    if (configurationId) setConfigId(configurationId)
+    const configurationId = localStorage.getItem('configurationId');
+    if (configurationId){
+      setConfigId(configurationId);
+    }
   }, [])
 
   const fetchAuthStatus = async () => {
@@ -26,13 +28,7 @@ const Page = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      await fetchAuthStatus();
-    };
-
-    const intervalId = setInterval(fetchData, 500);
-
-    return () => clearInterval(intervalId);
+    fetchAuthStatus();    
   }, []);
 
   if (resp===true) {

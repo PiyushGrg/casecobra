@@ -13,7 +13,7 @@ const LoginModal = ({
 }) => {
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
-      <DialogContent className='absolute z-[9999999]'>
+      <DialogContent className='absolute z-[9999999] mt-[350px] md:mt-[200px] lg:mt-0'>
         <DialogHeader>
           <div className='relative mx-auto w-24 h-24 mb-2'>
             <Image
