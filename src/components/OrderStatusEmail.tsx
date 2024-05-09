@@ -1,4 +1,4 @@
-import { ShippingAddress } from '@prisma/client'
+import { ShippingAddress, OrderStatus } from '@prisma/client'
 import {
   Body,
   Column,
@@ -14,21 +14,23 @@ import {
   Text,
 } from '@react-email/components'
 
-const OrderReceivedEmail = ({
+const OrderStatusChangeEmail = ({
   shippingAddress,
   orderId,
   orderDate,
+  newStatus,
 }: {
   shippingAddress: ShippingAddress
   orderId: string
   orderDate: string
+  newStatus: string
 }) => {
   const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://casecobra-ashy.vercel.app'
 
   return (
     <Html>
       <Head />
-      <Preview>Your order summary and estimated delivery date</Preview>
+      <Preview>Your order status has been updated</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={message}>
@@ -39,10 +41,9 @@ const OrderReceivedEmail = ({
               alt='delivery snake'
               style={{ margin: 'auto' }}
             />
-            <Heading style={global.heading}>Thank you for your order!</Heading>
+            <Heading style={global.heading}>Order Status Update</Heading>
             <Text style={global.text}>
-              We're preparing everything for delivery and will notify you once
-              your package has been shipped. Delivery usually takes 3 days.
+              The status of your order #{orderId} has been updated to: {newStatus}
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
               If you have any questions regarding your order, please feel free
@@ -97,7 +98,7 @@ const OrderReceivedEmail = ({
   )
 }
 
-export default OrderReceivedEmail
+export default OrderStatusChangeEmail
 
 const paddingX = {
   paddingLeft: '40px',

@@ -73,6 +73,7 @@ export const createCheckoutSession = async ({configId}: {
     payment_method_types: ['card'],
     mode: 'payment',
     shipping_address_collection: { allowed_countries: ['IN'] },
+    phone_number_collection: { enabled: true },
     metadata: {
       userId: user.id,
       orderId: order.id,
