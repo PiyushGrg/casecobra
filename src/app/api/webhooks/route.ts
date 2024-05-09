@@ -5,15 +5,11 @@ import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import {Resend} from "resend"
 import OrderReceivedEmail from '@/components/Email'
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
 export async function POST(req: Request) {
   try {
-
-    const { getUser } = getKindeServerSession();
-    const user = await getUser();
 
     const body = await req.text()
     const signature = headers().get('stripe-signature')
@@ -80,7 +76,7 @@ export async function POST(req: Request) {
 
       await resend.emails.send({
         from: 'CaseCobra <no-reply@heapoverflow.tech>',
-        to: user?.email!,
+        to: [event.data.object.customer_details.email],
         subject: '✌️ Thanks for your order. Your order has been placed!',
         react: OrderReceivedEmail({
           orderId,
