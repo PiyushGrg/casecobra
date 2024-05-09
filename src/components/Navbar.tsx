@@ -21,14 +21,6 @@ const Navbar = async () => {
           <div className='h-full flex items-center space-x-4'>
             {user ? (
               <>
-                <Link
-                  href='/api/auth/logout'
-                  className={buttonVariants({
-                    size: 'sm',
-                    variant: 'ghost',
-                  })}>
-                  Sign out
-                </Link>
                 {isAdmin ? (
                   <Link
                     href='/dashboard'
@@ -39,6 +31,22 @@ const Navbar = async () => {
                     Dashboard ✨
                   </Link>
                 ) : null}
+                <Link
+                  href='/history'
+                  className={buttonVariants({
+                    size: 'sm',
+                    variant: 'ghost',
+                  })}>
+                  Order History
+                </Link>
+                <Link
+                  href='/api/auth/logout'
+                  className={buttonVariants({
+                    size: 'sm',
+                    variant: 'ghost',
+                  })}>
+                  Sign out
+                </Link>
                 <Link
                   href='/configure/upload'
                   className={buttonVariants({
