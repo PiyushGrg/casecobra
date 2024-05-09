@@ -9,7 +9,14 @@ import {
 import { db } from "@/db";
 import { formatPrice } from "@/lib/utils";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { OrderStatus } from "@prisma/client";
 import { notFound } from "next/navigation";
+
+const LABEL_MAP: Record<keyof typeof OrderStatus, string> = {
+  awaiting_shipment: "Awaiting Shipment",
+  fulfilled: "Fulfilled",
+  shipped: "Shipped",
+};
 
 const Page = async () => {
     
@@ -62,8 +69,8 @@ const Page = async () => {
                       {order.user.email}
                     </div>
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell capitalize">
-                    {order.status}
+                  <TableCell className="hidden sm:table-cell">
+                    {LABEL_MAP[order.status]}
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
                     {order.createdAt.toLocaleDateString()}
