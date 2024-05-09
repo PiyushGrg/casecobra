@@ -123,11 +123,10 @@ const Page = async () => {
             <TableHeader>
               <TableRow>
                 <TableHead>Customer</TableHead>
-                <TableHead className="hidden sm:table-cell">Status</TableHead>
-                <TableHead className="hidden sm:table-cell">
-                  Purchase date
-                </TableHead>
-                <TableHead className="text-right">Amount</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="hidden sm:table-cell">Purchase date</TableHead>
+                <TableHead className="hidden sm:table-cell">Amount</TableHead>
+                <TableHead className="text-right">Phone number</TableHead>
               </TableRow>
             </TableHeader>
 
@@ -142,14 +141,17 @@ const Page = async () => {
                       {order.user.email}
                     </div>
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell">
+                  <TableCell>
                     <StatusDropdown id={order.id} orderStatus={order.status} />
                   </TableCell>
-                  <TableCell className="hidden md:table-cell">
+                  <TableCell className="hidden sm:table-cell">
                     {order.createdAt.toLocaleDateString()}
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="hidden sm:table-cell">
                     {formatPrice(order.amount)}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    {order.shippingAddress?.phoneNumber}
                   </TableCell>
                 </TableRow>
               ))}

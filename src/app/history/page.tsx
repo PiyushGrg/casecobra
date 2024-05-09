@@ -52,7 +52,7 @@ const Page = async () => {
             <TableHeader>
               <TableRow>
                 <TableHead>Shipping address</TableHead>
-                <TableHead className="hidden sm:table-cell">Status</TableHead>
+                <TableHead>Status</TableHead>
                 <TableHead className="hidden sm:table-cell">Purchase date</TableHead>
                 <TableHead className="text-right">Amount</TableHead>
               </TableRow>
@@ -69,10 +69,10 @@ const Page = async () => {
                       {order.user.email}
                     </div>
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell">
+                  <TableCell>
                     {LABEL_MAP[order.status]}
                   </TableCell>
-                  <TableCell className="hidden md:table-cell">
+                  <TableCell className="hidden sm:table-cell">
                     {order.createdAt.toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">
