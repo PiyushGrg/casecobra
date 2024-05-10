@@ -15,10 +15,10 @@ export const getPaymentStatus = async ({ orderId }: { orderId: string }) => {
     const order = await db.order.findFirst({
         where: { id: orderId, userId: user.id },
         include: {
-        billingAddress: true,
-        configuration: true,
-        shippingAddress: true,
-        user: true,
+          billingAddress: true,
+          configuration: true,
+          shippingAddress: true,
+          user: true,
         },
     })
 

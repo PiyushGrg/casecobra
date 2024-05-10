@@ -123,6 +123,7 @@ const Page = async () => {
             <TableHeader>
               <TableRow>
                 <TableHead>Customer</TableHead>
+                <TableHead>Order ID</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead className="hidden sm:table-cell">Purchase date</TableHead>
                 <TableHead className="hidden sm:table-cell">Amount</TableHead>
@@ -140,6 +141,9 @@ const Page = async () => {
                     <div className="hidden text-sm text-muted-foreground md:inline">
                       {order.user.email}
                     </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="font-medium">{order.id}</div>
                   </TableCell>
                   <TableCell>
                     <StatusDropdown id={order.id} orderStatus={order.status} />

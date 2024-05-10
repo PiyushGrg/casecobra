@@ -1,22 +1,7 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { db } from "@/db";
-import { formatPrice } from "@/lib/utils";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { OrderStatus } from "@prisma/client";
 import { notFound } from "next/navigation";
-
-const LABEL_MAP: Record<keyof typeof OrderStatus, string> = {
-  awaiting_shipment: "Awaiting Shipment",
-  fulfilled: "Fulfilled",
-  shipped: "Shipped",
-};
+import OrderTable from "./_components/OrderTable";
 
 const Page = async () => {
     
@@ -38,6 +23,7 @@ const Page = async () => {
     include: {
       user: true,
       shippingAddress: true,
+      billingAddress: true,
     },
   });
 
@@ -48,40 +34,7 @@ const Page = async () => {
 
           <h1 className="text-4xl font-bold tracking-tight">Past orders</h1>
 
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Shipping address</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="hidden sm:table-cell">Purchase date</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
-              </TableRow>
-            </TableHeader>
-
-            <TableBody>
-              {orders.map((order) => (
-                <TableRow key={order.id} className="bg-accent">
-                  <TableCell>
-                    <div className="font-medium">
-                      {order.shippingAddress?.city ? `${order.shippingAddress.city}, ` : null } {order.shippingAddress?.state ? `${order.shippingAddress.state}` : null } 
-                    </div>
-                    <div className="hidden text-sm text-muted-foreground md:inline">
-                      {order.user.email}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    {LABEL_MAP[order.status]}
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    {order.createdAt.toLocaleDateString()}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {formatPrice(order.amount)}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <OrderTable orders={orders} />
         </div>
       </div>
     </div>
