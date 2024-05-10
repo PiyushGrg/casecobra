@@ -230,12 +230,12 @@ const Invoice = ({
                 </div>
 
                 <div>
-                  <p className="mt-[200px]">
+                  <p className="mt-[180px]">
                     If you have any questions regarding your order, please feel free
                     to contact us with your order id and we're here to help.
                   </p>
 
-                  <p className="mt-5">
+                  <p>
                     © CaseCobra, Inc. All Rights Reserved.
                   </p>
                 </div>
