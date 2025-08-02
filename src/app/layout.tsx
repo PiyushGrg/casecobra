@@ -17,6 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head> 
+        {/* <script src="https://crowlit-client.vercel.app/loader.js" data-site="44576ed75197"></script> */}
+        
+        <Script
+          src="https://crowlit-client.vercel.app/loader.js"
+          data-site="44576ed75197"
+          strategy="afterInteractive"
+        />
+
+
+      </head>
       <body className={recursive.className}>
         <Navbar />
         <main className="flex flex-col min-h-[calc(100vh-3.5rem-1px)] grainy-light">
@@ -26,7 +37,7 @@ export default function RootLayout({
           <Footer />
         </main>
         <Toaster />
-        <Script
+        {/* <Script
           id="tawk-script"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -42,7 +53,7 @@ export default function RootLayout({
               })();
             `,
           }}
-        />
+        /> */}
       </body>
     </html>
   );
